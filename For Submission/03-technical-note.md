@@ -31,7 +31,7 @@ js/
 comics/                 comic page assets per chapter (ch0–ch13)
 icons/, fonts/          PWA icons and webfonts
 README.md, LICENSE      user-facing guide and open-source licence
-docs/                   written submission material
+"For Submission/"       written submission material
 ```
 
 ## Data-driven by design
