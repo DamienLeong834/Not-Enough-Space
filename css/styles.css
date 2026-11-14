@@ -3184,3 +3184,106 @@ html[data-motion="less"] *::after {
 .team-item.lead { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
 .team-name { font-weight: 800; font-size: 1.05rem; }
 .team-role { font-size: 0.85rem; color: var(--muted); }
+
+/* ============================================================
+   MOBILE ERGONOMICS — aligned, evenly spaced, finger-friendly
+   controls. Kept last so it wins over earlier small-screen rules.
+   ============================================================ */
+@media (max-width: 720px) {
+  /* Top bar: real tap target for Home, buttons spread instead of
+     bunching against the right edge. */
+  .topbar { gap: 0.5rem; }
+  .brand { min-height: 48px; flex: 0 0 auto; }
+  .brand-icon {
+    width: 44px; height: 44px; font-size: 1.35rem;
+    display: grid; place-items: center;
+  }
+  .topbar-actions {
+    flex: 1 1 auto;
+    justify-content: space-evenly;
+    gap: 8px;
+  }
+  .icon-btn {
+    width: 48px; height: 48px;
+    min-width: 48px; min-height: 48px;
+    font-size: 1.2rem;
+  }
+  .lang-btn { width: 48px; font-size: 0.8rem; }
+
+  /* Hero: three equal, full-width buttons in a tidy vertical stack
+     (previously three differently-sized centred pills). */
+  .hero-actions {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions .btn { width: 100%; min-height: 56px; }
+
+  /* Read-aloud button: centred under the description rather than
+     floating over its right-hand edge. */
+  .hero-desc-row { flex-direction: column; gap: 0.55rem; }
+  .hero-desc-row .hero-desc { width: 100%; }
+  .hero-desc-row .tts-btn { align-self: center; }
+
+  /* Game HUD: one tidy row (Quit | dots | mute) with the depth
+     meter full width underneath. */
+  .game-hud {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas:
+      "quit dots mute"
+      "meter meter meter";
+    align-items: center;
+    gap: 0.65rem 0.5rem;
+  }
+  .game-hud > .btn-small { align-self: auto; }
+  .game-hud > .btn-small:first-child { grid-area: quit; justify-self: start; }
+  .game-hud > .hud-mute { grid-area: mute; justify-self: end; }
+  .game-hud > .dots { grid-area: dots; justify-content: center; }
+  .game-hud > .depth-meter {
+    grid-area: meter;
+    width: 100%; max-width: none; min-width: 0;
+  }
+
+  /* Every small button gets a proper 48px target; buttons sharing a
+     row split the width evenly (Hint / Skip, dialogs). */
+  .btn-small { min-height: 48px; }
+  .btn-row { gap: 0.6rem; }
+  .btn-row .btn-small {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+
+  /* Timer chips: aligned columns instead of a ragged centred wrap. */
+  .choice-chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .choice-chips .chip { width: 100%; min-height: 48px; }
+  .choice-chips .chip:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+  /* Source / footer links need a 44px target too. */
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* ---------- tap-target floor for the two persistent links (all widths) ---------- */
+.brand { min-height: 48px; }
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
