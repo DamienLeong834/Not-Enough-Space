@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1026" />
+  <meta
+    name="description"
+    content="Not Enough Space — a comic and Deep Space Dive adventure for ages 7–12 about NASA's discarded equipment on the Moon, Mars, and deep space. NASA Space Apps Challenge 2026."
+  />
+
+  <!-- social / sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Not Enough Space — Abandoned Space Junk by NASA" />
+  <meta
+    property="og:description"
+    content="Read the comic. Dive deep. Unlock the next story — and meet the real robots NASA left behind on the Moon, Mars, and deep space. NASA Space Apps Challenge 2026."
+  />
+  <meta property="og:image" content="icons/icon-512.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Not Enough Space — Abandoned Space Junk by NASA" />
+  <meta
+    name="twitter:description"
+    content="A comic + Deep Space Dive adventure for ages 7–12 about NASA's discarded equipment."
+  />
+  <meta name="twitter:image" content="icons/icon-512.png" />
+
+  <title>Not Enough Space — Abandoned Space Junk by NASA</title>
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E"
+  />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Not Enough Space" />
+
+  <!-- self-hosted font so the whole app works offline (no Google CDN) -->
+  <link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to the adventure</a>
+
+  <!-- animated space background -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="Not Enough Space — home">
+      <span class="brand-icon" aria-hidden="true">🚀</span>
+      <span class="brand-name">Not Enough Space</span>
+    </a>
+    <div class="topbar-actions">
+      <a
+        class="icon-btn"
+        href="#/control"
+        aria-label="Mission Control — NASA Space Science Data"
+        title="Mission Control — NASA Space Science Data"
+      >
+        🛰️
+      </a>
+      <a
+        class="icon-btn"
+        href="#/museum"
+        aria-label="Space Junk Museum"
+        title="Space Junk Museum"
+      >
+        🏛️
+      </a>
+      <button
+        id="lang-btn"
+        class="icon-btn lang-btn"
+        type="button"
+        aria-label="Change language — English / Español"
+        title="Change language — English / Español"
+      >
+        ES
+      </button>
+      <button
+        id="install-btn"
+        class="icon-btn"
+        type="button"
+        aria-label="Install this app"
+        title="Install this app"
+        hidden
+      >
+        📲
+      </button>
+      <button
+        id="settings-btn"
+        class="icon-btn"
+        type="button"
+        aria-label="Open settings"
+        title="Settings"
+      >
+        ⚙️
+      </button>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1">
+    <!-- views render here -->
+  </main>
+
+  <noscript>
+    <div class="noscript card">
+      <h1>JavaScript needed 🚀</h1>
+      <p>
+        Please turn on JavaScript to read the comics and play the Deep Space Dive.
+      </p>
+    </div>
+  </noscript>
+
+  <!-- Settings modal -->
+  <div id="settings-modal" class="modal" hidden>
+    <div
+      id="settings-box"
+      class="modal-box card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="settings-title"
+    ></div>
+  </div>
+
+  <!-- generic dialog host (in-app confirmations) -->
+  <div id="dialog-host"></div>
+  <!-- toast host (achievements, unlocks) -->
+  <div id="toast-host" class="toast-host" aria-live="polite"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/nssdc-data.js"></script>
+  <script src="js/nssdc.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/tts.js"></script>
+  <script src="js/sfx.js"></script>
+  <script src="js/bg.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // offline support (progressive enhancement — the app works without it)
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+      // When a new worker takes over, reload once so nobody is left
+      // looking at an old build (this is what caused stale-cache bugs).
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", function () {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
+    }
+  </script>
+</body>
+</html>

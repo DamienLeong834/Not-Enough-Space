@@ -1,0 +1,20 @@
+{
+  "id": "/not-enough-space",
+  "name": "Not Enough Space — Abandoned Space Junk by NASA",
+  "short_name": "Not Enough Space",
+  "description": "A comic and Deep Space Dive adventure for ages 7–12 about NASA's discarded equipment on the Moon, Mars, and deep space. NASA Space Apps Challenge 2026.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1026",
+  "theme_color": "#0b1026",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "games", "books"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
