@@ -1,4 +1,4 @@
-# NETLIFY LINK 
+# SELF HOSTED PAGE LINK 
 https://not-enough-space.netlify.app/
 
 # 🚀 Not Enough Space — Abandoned Space Junk by NASA
