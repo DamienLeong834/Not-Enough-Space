@@ -1,3 +1,6 @@
+# NETLIFY LINK 
+https://not-enough-space.netlify.app/
+
 # 🚀 Not Enough Space — Abandoned Space Junk by NASA
 
 A **comic + trivia adventure for ages 7–12**, made for the
